@@ -5,13 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.TextPaint;
+import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private Button mBtnLogin;
-    private Button mBtnRegister;
+    private TextView mRegisterText;
     private EditText mUsernameField;
     private EditText mPasswordField;
 
@@ -23,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         mUsernameField = findViewById(R.id.login_username);
         mPasswordField = findViewById(R.id.login_password);
         mBtnLogin = findViewById(R.id.btn_login);
-        mBtnRegister = findViewById(R.id.btn_register);
+        mRegisterText = findViewById(R.id.text_register);
 
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,5 +52,25 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        SpannableString span = new SpannableString("Belum punya Akun? Register");
+        ClickableSpan ClickSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.BLUE); // Warna biru untuk teks Register
+                ds.setUnderlineText(false);
+            }
+        };
+
+        span.setSpan(ClickSpan, 18, 26, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mRegisterText.setText(span);
+        mRegisterText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

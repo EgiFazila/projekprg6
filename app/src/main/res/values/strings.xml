@@ -3,4 +3,9 @@
     <string name="main_description">Minjem boleh, lupa jangan! Biar nggak ditagih terus, catat semua pinjamanmu di sini.</string>
     <string name="main_title">Manajemen Peminjaman\n Buku Pribadi</string>
     <string name="btn_started">Get Started</string>
+    <string name="text_register">Belum Punya Akun? Register</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_title">Login</string>
+
 </resources>
